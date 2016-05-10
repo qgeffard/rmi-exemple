@@ -22,15 +22,19 @@ public class CalculatriceTest {
 	}
 	
 	@Test
-	public void getTest() throws RemoteException, NotBoundException{
+	public CalculatriceAPI getTest() throws RemoteException, NotBoundException{
 		bindTest();
 		
 		Registry registry = LocateRegistry.getRegistry(32560);
 		CalculatriceAPI service = (CalculatriceAPI) registry.lookup("Calculatrice");
-		int rsl = service.add(1, 1);
+		return service;
 		
+	}
+	
+	@Test
+	public void getAndPlayTest() throws RemoteException, NotBoundException {
+		int rsl = getTest().add(1, 1);
 		System.out.println(rsl);
-		
 	}
 
 }
